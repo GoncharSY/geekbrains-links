@@ -1,0 +1,53 @@
+# Настройки запуска.
+run:
+  # Значение конкурентности устанавливаем по количеству CPU.
+  concurrency: 4
+
+  # Анализ не должен превышать.
+  timeout: 1m
+
+  # Выводить "exit-code" при наличии хотя бы одного сообщения.
+  issues-exit-code: 1
+
+  # Не включать анализ тестов.
+  tests: false
+
+  # Пропускать папки вендора, сторонних зависимостей и т.д.
+  # vendor$, third_party$, testdata$, examples$, Godeps$, builtin$
+  skip-dirs-use-default: true
+
+  # Пропускать файлы, заканчивающиеся на .bad.go.
+  skip-files:
+    - ".*\\.bad\\.go$"
+
+# Список линтеров.
+linters:
+  disable-all: true
+  enable:
+    # - gofmt
+    # - goimports
+    - govet         # общий анализ возможных багов.
+    - goconst       # нахождение строк, которые следует вынести в константы.
+    - funlen        # детектирование слишком крупных функций.
+    - bodyclose     # проверка на незакрытые body после чтения тела ответа.
+    - errcheck      # проверка на обработку всех ошибок.
+    - unused        # детектирование не использованного кода.
+    - exportloopref # детектирование экспорта указателя на переменную внутри цикла.
+    - lll           # проверка длинны строк кода.
+  # disable:
+  #   - whitespace
+
+linters-settings:
+  funlen:
+    lines: 100
+    statements: 50
+
+  goconst:
+    min-len: 2
+    min-occurrences: 3
+
+  lll:
+    line-length: 120
+
+  govet:
+    check-shadowing: true
