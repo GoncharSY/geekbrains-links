@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
-    - name: Run golangci-lint
+    - name: Клонирование текущего репозитория
+      uses: actions/checkout@v3
+    
+    - name: Запуск golangci-lint
       uses: golangci/golangci-lint-action@v3.3.0
     
