@@ -1,0 +1,16 @@
+name: linter
+
+on: 
+  push:
+    branches:
+    - main
+
+jobs:
+  golangci-running:
+    name: "Golang CI running"
+    runs-on: ubuntu-latest
+    steps:
+    
+    - name: Run golangci-lint
+      uses: golangci/golangci-lint-action@v3.3.0
+    
